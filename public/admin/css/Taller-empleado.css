@@ -1,0 +1,88 @@
+.btn-act{
+    position: absolute;
+    left: 79%;
+    margin: 10px;
+}
+.btnCancelar{
+    position: absolute;
+    left: 90%;
+    margin-top: 10px;
+}
+thead{
+    background: #2a3f54;
+    color: white;
+}
+.foto_empleado{
+    width: 50px;
+    }
+ label{
+        margin-top: 10px;
+    }
+	.marginTop{
+		margin-top: 15px;
+	}
+
+	.btnSiguiente{
+		margin-top: 85px;
+		margin-left: 250px;
+	}
+
+	.btnSiguiente_f{
+    margin-top: -57px;
+    margin-left: 420px;
+	}
+
+	.btnAnterior_f{
+		margin-top: 17px;
+    	margin-left: 0px;
+	}
+    .btnAnteriror_S{
+
+       margin-top: 17px;
+        margin-left: 0px; 
+    }
+
+    .tamaño{
+
+        width: 100%;
+    }
+
+    .btnGuardarEmpleado{
+        margin-top: 17px;
+        margin-left: 0px;
+    }
+
+    .error{
+        border-color: #e83e3e;
+        background-color: #f9e1de;
+    }
+    .error:active{
+        border-color: #e83e3e;
+    }
+    .error_span:after{
+        content: 'x';
+        color: #fff;
+        position: absolute;
+        top: 55px;
+        left: 300px;
+        font-size: 20px;
+        background: red;
+        border-radius: 50%;
+        width: 30px;
+        text-align: center;
+        height: 30px;
+    }
+
+@media (max-width: 670px) {
+    
+    .error_span:after{
+        left: 245px;
+    }
+    .btn-act{
+    left: 60%;
+    }
+    .btnCancelar{
+    left: 82%;
+    }
+}
+
