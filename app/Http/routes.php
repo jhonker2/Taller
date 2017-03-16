@@ -153,7 +153,7 @@ route::get('CategoriaUsuariosId/{id}','CategoriaUserControllers@edit');
 //cargar datos de usuarios
 //route::get('UsuariosId/{id}','UsuariosControllers@edit');
 //fin cargar datos de Usuarios
-
+route::get("welcomeAdmin/AdminTaller/utils/combocliente", "FacturaVentasControllers@crearCombo");
 
 //RUTAS DEL BODEGERO
 

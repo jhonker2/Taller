@@ -102,15 +102,13 @@
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Cliente</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                      <div class="input-group demo2">
-                        <select class="js-example-basic-single " id="idCliente" name="idCliente"  placeholder="Nombre de Cliente">
-                          @foreach($Clientes as $clie)
-                            <option> Seleccione Cliente</option>
-                            <option value="{{$clie->id}}">{{$clie->nombre}}</option>
-                          @endforeach
-                        </select >
-                            <span class="input-group-addon"><button class="btn btn-success" type="button" data-toggle="modal" data-target="#ModalNewCliente"><li class="fa fa-user"></li></button></span>
+                      <div class="input-group demo2" >
+                          <div id="cCliente">
+                          @include("AdminTaller.utils.combocliente");
+                          </div>
+                          <span class="input-group-addon"><button class="btn btn-success" style="margin-bottom: 16px;" type="button" data-toggle="modal" data-target="#ModalNewCliente"><li class="fa fa-user"></li></button></span>
                       </div>
+                      
                     </div>
                 </div>
             </div>
@@ -138,7 +136,7 @@
           </div>
         </div>
     </div> <!--Fin del col-md-5 -->
-
+</form>
 <!--  REGISTRAR CLIENTE DESDE FACTURA-->
 
 <div class="modal fade" id="ModalNewCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -149,11 +147,12 @@
             <h4 class="modal-title" id="myModalLabel">Registrar Clientes</h4>
         </div>
       <div class="modal-body">
+      <form id="FormClientes">
+        
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-4">
-          {!!Form::open(['id'=>'FormClientes'])!!}
+          
             <input  type="hidden" name="_token" value="{{ csrf_token() }}" id="token"> 
-            <input  type="hidden" name="" value="" id="IdCliente"> 
             {!!Form::label('Cedula:')!!}
             {!!Form::text('cedula',null,['id'=>'cedula', 'class'=>'form-control','placeholder'=>'Ingrese el numero de cedula','required'=>''])!!}
             {!!Form::label('Apellido Paterno:')!!}
@@ -423,27 +422,23 @@ function AgregarProductoTabla(){
                 });
             }else{
               debugger
-            var cedula=$('#cedula').val();
-            var apellidoMaterno=$('#apellidoMaterno').val();
-            var apellidoPaterno=$('#apellidoPaterno').val();
-            var nombre=$('#nombre').val();
-            var estadoCivil=$('#estadoCivil').val();
-            var sexo=$('#sexo').val();
-            var corrreo=$('#corrreo').val();
-            var telefono=$('#telefono').val();
-
+           
+          var Datos=new FormData($("#FormClientes")[0]);
            var token=$("#token").val();
             $.ajax({
-                type    :'post',
-                url     :'{!!URL::route('saveClie')!!}',
+              
+                url     :'/welcomeAdmin/Clientes/agregarClientes',
                 headers :{'X-CSRF-TOKEN': token},
+                type    :'POST',
+                dataType: 'json',
                 contentType: false,
                 processData: false,
-                data  : {cedula:cedula,apellidoMaterno:apellidoMaterno,apellidoPaterno:apellidoPaterno,nombre:nombre,estadoCivil:estadoCivil,sexo:sexo,correo:correo,telefono:telefono},
+                data  : Datos,
                 success:function(data){
                    if(data.registro=='true'){
                     swal("Cliente Registrado Correctamente..!!", "", "success");
-
+                    $("#cCliente").load("AdminTaller/utils/combocliente");
+                    $("#ModalNewCliente").modal("hide");
                    }else{
                     swal("Error al registrar cliente Correctamente..!!", "", "error");
                    }

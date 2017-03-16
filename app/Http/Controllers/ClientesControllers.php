@@ -75,7 +75,7 @@ class ClientesControllers extends Controller
      */
     public function store(Request $request)
     {
-        
+        //return $request->all();
                          persona::create([
                         'cedula'=>$request->input('cedula'),
                         'apellidoPaterno'=>$request->input('apellidoPaterno'),

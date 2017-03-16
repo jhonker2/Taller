@@ -35,6 +35,11 @@ class FacturaVentasControllers extends Controller
          return view('AdminTaller.Facturacion.AdministracionVenta',compact('tipoUsuario','Productos','Clientes','numFact','FacturasVentas'));
     }   
 
+    public function crearCombo(){
+        $Clientes = DB::select("SELECT * FROM `personas`,clientes WHERE personas.cedula=clientes.cedula");
+        return view("AdminTaller.utils.combocliente",compact('Clientes'));
+    }
+
 
     public function Search_Producto($id){
 
